@@ -1,0 +1,183 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
+
+body {
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(to right, #0f172a, #1e293b);
+  color: white;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* Header Section */
+.header {
+  width: 100%;
+  padding: 30px 0;
+  background: linear-gradient(to right, #1e293b, #334155);
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  border-bottom: 3px solid #3b82f6;
+}
+
+.header h1 {
+  font-size: 40px; /* Increased size */
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.branding {
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  color: #60a5fa;
+  font-style: italic;
+}
+
+/* Align Upload/Caption Left and Q&A Right */
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Ensures equal height */
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  gap: 30px;
+}
+
+/* Upload + Image + Caption Section (Left) */
+.upload-caption-container {
+  flex: 1;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Upload Section */
+.upload-section {
+  border: 3px dashed #60a5fa;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.upload-section h2 {
+  font-size: 22px;
+}
+
+.upload-section p {
+  font-size: 16px;
+}
+
+.upload-section input {
+  font-size: 16px;
+  padding: 8px;
+}
+
+.choose-file-btn {
+  font-size: 16px;
+  padding: 10px 15px;
+  margin-top: 10px;
+}
+
+/* Image Display */
+.image-section img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+/* Caption Section */
+.caption-section {
+  margin-top: 15px;
+}
+
+.caption {
+  font-size: 26px; /* Bigger caption */
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+/* Q&A Section */
+.qa-container {
+  flex: 1;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+}
+
+/* Q&A Heading */
+.qa-container h2 {
+  font-size: 22px;
+}
+
+/* Q&A Input */
+.qa-section {
+  margin-top: 20px;
+}
+
+.qa-section input {
+  width: 80%;
+  padding: 14px;
+  font-size: 18px; /* Increased size */
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.qa-section button {
+  background: linear-gradient(to right, #6366f1, #3b82f6);
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.qa-section button:hover {
+  background: linear-gradient(to right, #4f46e5, #2563eb);
+}
+
+/* Answer Section */
+.answer-section {
+  margin-top: 15px;
+}
+
+.answer {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+/* Audio Controls */
+.audio-controls {
+  margin-top: 10px;
+}
+
+audio {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* Responsive: Stack on Small Screens */
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+  }
+  .upload-caption-container,
+  .qa-container {
+    flex: 1;
+    text-align: center;
+    width: 100%;
+  }
+}
