@@ -1,0 +1,159 @@
+Image Captioning Implementation with Snapdragon Support
+
+This document outlines the implementation of image captioning using Snapdragon hardware acceleration.
+
+1. Prerequisites:
+- Qualcomm Neural Processing SDK for AI
+- Converted DLC models
+- Python with required dependencies
+
+2. Model Conversion:
+Convert ONNX models to DLC format using:
+```bash
+onnx_to_dlc -i models/vision_model.onnx -o models/vision_model.dlc
+onnx_to_dlc -i models/language_model.onnx -o models/language_model.dlc
+```
+
+3. Implementation Code:
+
+```python
+import cv2
+import numpy as np
+from transformers import AutoTokenizer, BlipProcessor, BlipForConditionalGeneration
+from PIL import Image
+import sys
+import os
+from qti.aisw.inference import InferenceEngine
+
+def preprocess_image(image_path):
+    print(f"Attempting to load image from: {image_path}")
+
+    if not os.path.exists(image_path):
+        raise FileNotFoundError(f"Image file not found: {image_path}")
+
+    image = cv2.imread(image_path)
+    if image is None:
+        raise ValueError(f"Unable to load image from {image_path}")
+
+    print(f"Original image shape: {image.shape}")
+    image = cv2.resize(image, (256, 256))
+    print(f"Resized image shape: {image.shape}")
+
+    # Normalize pixel values to [0,1] and convert to float32
+    image = image.astype(np.float32) / 255.0
+    image = np.transpose(image, (2, 0, 1))
+    image = np.expand_dims(image, axis=0)
+    print(f"Final preprocessed image shape: {image.shape}")
+    return image
+
+def run_vision_model_with_snapdragon(image_np, model_path):
+    """
+    Run inference using Snapdragon's Inference Engine
+    """
+    print("Running vision model on Snapdragon...")
+    try:
+        engine = InferenceEngine(model_path)
+        outputs = engine.run(image_np)
+        features = outputs[0]
+        print(f"Extracted features shape: {features.shape}")
+        return features
+    except Exception as e:
+        print(f"Error running Snapdragon inference: {str(e)}")
+        raise
+
+def run_language_model_with_snapdragon(features, model_path):
+    """
+    Run language model inference using Snapdragon's Inference Engine
+    """
+    print("Running language model on Snapdragon...")
+    try:
+        engine = InferenceEngine(model_path)
+        outputs = engine.run({"features": features})
+        return outputs[0]
+    except Exception as e:
+        print(f"Error running Snapdragon language model: {str(e)}")
+        raise
+
+def generate_caption_with_blip(image_path):
+    """
+    Generate a caption for the given image using the BLIP model.
+    """
+    processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
+    model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
+    image = Image.open(image_path).convert("RGB")
+    inputs = processor(image, return_tensors="pt")
+    outputs = model.generate(**inputs)
+    caption = processor.decode(outputs[0], skip_special_tokens=True)
+    return caption
+
+def main(image_path):
+    try:
+        print(f"\nStarting image captioning for: {image_path}")
+
+        # Check for DLC models
+        vision_model_path = "models/vision_model.dlc"
+        language_model_path = "models/language_model.dlc"
+
+        if not os.path.exists(vision_model_path):
+            raise FileNotFoundError(f"Vision model not found at: {vision_model_path}")
+        if not os.path.exists(language_model_path):
+            raise FileNotFoundError(f"Language model not found at: {language_model_path}")
+
+        # Preprocess the input image
+        image_np = preprocess_image(image_path)
+
+        # Run vision model using Snapdragon
+        print("\nRunning vision model on Snapdragon...")
+        features = run_vision_model_with_snapdragon(image_np, vision_model_path)
+
+        # Run language model using Snapdragon
+        print("\nRunning language model on Snapdragon...")
+        language_output = run_language_model_with_snapdragon(features, language_model_path)
+
+        # Generate caption using BLIP as fallback
+        print("\nGenerating caption using BLIP...")
+        caption = generate_caption_with_blip(image_path)
+        print("\nGenerated Caption:")
+        print(caption)
+
+    except Exception as e:
+        print(f"\nError occurred: {str(e)}")
+        print("\nTraceback:")
+        import traceback
+        traceback.print_exc()
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python image_captioning.py <image_path>")
+        print("Example: python image_captioning.py images/test_images/img1.jpeg")
+        sys.exit(1)
+    main(sys.argv[1])
+```
+
+4. Key Features:
+- Hardware acceleration using Snapdragon's Hexagon DSP and Adreno GPU
+- BLIP model as fallback option
+- Comprehensive error handling
+- Detailed logging of the process
+
+5. Usage:
+Run the script with:
+```bash
+python src/image_captioning.py images/test_images/img1.jpeg
+```
+
+6. Important Notes:
+- Ensure all models are properly converted to DLC format
+- Test thoroughly on Snapdragon hardware
+- Monitor performance metrics
+- Keep BLIP as fallback for reliability
+
+7. Dependencies:
+- Qualcomm Neural Processing SDK for AI
+- OpenCV (cv2)
+- NumPy
+- Transformers
+- PIL
+- Python 3.7+
+
+End of Documentation 

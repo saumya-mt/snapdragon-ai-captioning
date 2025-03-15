@@ -1,0 +1,13 @@
+# Remove these if they exist:
+# buildozer
+# android
+# pyjnius
+# python-for-android
+
+# Keep these cross-platform requirements:
+kivy
+pillow
+requests
+transformers
+torch
+gtts 

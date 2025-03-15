@@ -1,4 +1,8 @@
-onnxruntime
+chainlit
+pillow
+transformers
+torch
+gtts
 numpy
-opencv-python
-Pillow
+bleak
+kivy
