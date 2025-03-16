@@ -26,23 +26,35 @@ The application utilizes BLIP for captioning, ViLT for Visual Question Answering
 **SnapSense Live Preview**
 
 ## Installation
+
+### Clone the Repository
+Clone the project repository to your local machine:
+git clone https://github.com/your-repo/snapdragon-ai-captioning.git
+cd snapdragon-ai-captioning
+
+### Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate
+
 ### Prerequisites
+cd Hackathon
 Ensure you have the following dependencies installed:
 - Python 3.8+
 - PyTorch
 - Transformers (Hugging Face)
 - OpenCV
 - ONNX Runtime
-- Edge TTS
-- gTTS (Google Text-to-Speech)
+- Edge TTS - 6.1 and above
+- Chainlit
 - Bluetooth Libraries (Bleak, PyBluez)
+- You can install this altogether using pip install -r requirements.txt
 
 ### Install Required Packages
 ```bash
 pip install torch torchvision transformers onnxruntime edge-tts gtts bleak pybluez chainlit opencv-python numpy
 ```
 
-## Usage
+## Run and Usage Instructions
 
 ### 1. Running the Bluetooth Server
 ```bash
