@@ -88,6 +88,9 @@ After running this command, it will route us to this url http://localhost:8001/.
 - The generated response is converted to an audio file.
 
 ## Examples
+
+![image](https://github.com/user-attachments/assets/a948ab4e-2401-44b9-90c5-9c428028e9b1)
+
 The `examples/` folder includes sample input and output files to demonstrate SnapSense's capabilities:
 - `example_image.jpg` – A sample image for caption generation.
 - `example_caption.txt` – Shows how the original image is transformed into a caption and text description.
