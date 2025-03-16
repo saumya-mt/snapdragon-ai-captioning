@@ -5,6 +5,8 @@ SnapSense is an AI-driven accessibility tool that provides detailed image analys
 
 The application utilizes BLIP for captioning, ViLT for Visual Question Answering (VQA), and OpenCV for image processing, reducing latency, dependency on the cloud, and privacy concerns. The models are optimized for deployment on Snapdragon devices, ensuring efficient performance. The user-friendly interface is built using Chainlit to showcase SnapSense's capabilities.
 
+![SnapSense in Action](assets/snapsense_demo.gif)
+
 ## Features
 - **Real-Time Image Captioning**: Generates captions using a pre-trained BLIP model.
 - **Vision-Language Question Answering (VQA)**: Answers specific questions about an image.
@@ -12,6 +14,9 @@ The application utilizes BLIP for captioning, ViLT for Visual Question Answering
 - **Text-to-Speech (TTS)**: Converts image descriptions to speech using Edge TTS.
 - **Bluetooth Image Transfer**: Enables image sharing from mobile devices.
 - **Automated Processing Pipeline**: Handles image preprocessing, model inference, and response generation.
+
+## Preview
+**SnapSense Live Preview**
 
 ## Installation
 ### Prerequisites
@@ -60,6 +65,13 @@ chainlit run src/app.py --port 8001
 - Received images are automatically processed and described.
 - The generated response is converted to an audio file.
 
+## Examples
+The `examples/` folder includes sample input and output files to demonstrate SnapSense's capabilities:
+- `example_image.jpg` – A sample image for caption generation.
+- `example_caption.txt` – Shows how the original image is transformed into a caption and text description.
+- `example_vqa.txt` – Demonstrates VQA responses to common image-related queries.
+
+
 ## Cloud vs. Local Execution
 - **Runs Locally**: BLIP, ViLT, ResNet-50, OpenCV *(after initial download and caching)*
 - **Requires Internet**: Edge TTS *(Cloud-based Speech Synthesis)*
@@ -70,6 +82,35 @@ chainlit run src/app.py --port 8001
 - **Mobile App Integration**: A dedicated app for a seamless experience.
 - **Multilingual Support**: Expanding TTS and text processing to multiple languages.
 - **Edge Computing**: Optimized models for deployment on mobile devices.
+
+## Use Cases
+### 1. Accessibility for Visually Impaired Users
+- Converts images into descriptive text and audio to help visually impaired individuals understand their surroundings.
+- **Example:** Real-time AI-powered screen readers that describe objects, people, or scenes.
+
+### 2. Enhanced Social Media & Content Creation
+- Generates context-aware captions by analyzing both images and audio.
+- **Example:** Auto-captioning for Instagram, TikTok, and YouTube, making content more engaging and accessible.
+
+### 3. Surveillance & Security
+- Uses AI-powered captioning to analyze CCTV footage, describe incidents, and provide real-time alerts.
+- **Example:** Smart security systems that detect and narrate suspicious activities.
+
+### 4. E-Commerce & Retail
+- Provides automated product descriptions by analyzing images and spoken reviews.
+- **Example:** AI-driven product tagging on Amazon or fashion websites.
+
+### 5. Education & E-Learning
+- Converts visual content and spoken lectures into text captions, making learning materials more accessible.
+- **Example:** AI-driven lecture transcription with slide-based captioning.
+
+### 6. Healthcare & Assistive Tech
+- Helps doctors analyze medical images (X-rays, MRIs) and generate automated reports.
+- **Example:** AI-powered captioning for telemedicine and patient monitoring.
+
+### 7. Smart Virtual Assistants & Chatbots
+- Enhances chatbots with image/audio recognition, making interactions more dynamic.
+- **Example:** A virtual assistant that can “see” and “hear” the user, responding accordingly.
 
 ## Contributors
 - **Dhanashri Deshpande** - MS in Computer Science
