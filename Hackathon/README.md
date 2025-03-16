@@ -39,7 +39,10 @@ source venv/bin/activate
 ```
 
 ### Prerequisites
+
+```
 cd Hackathon
+```
 
 Ensure you have the following dependencies installed:
 - Python 3.8+
@@ -50,7 +53,7 @@ Ensure you have the following dependencies installed:
 - Edge TTS - 6.1 and above
 - Chainlit
 - Bluetooth Libraries (Bleak, PyBluez)
-- You can install this altogether using pip install -r requirements.txt
+- You can install this altogether using  ```pip install -r requirements.txt```
 
 ## Run and Usage Instructions
 
