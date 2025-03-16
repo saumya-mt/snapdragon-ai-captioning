@@ -123,9 +123,9 @@ The `examples/` folder includes sample input and output files to demonstrate Sna
 - Converts visual content and spoken lectures into text captions, making learning materials more accessible.
 - **Example:** AI-driven lecture transcription with slide-based captioning.
 
-### 7. Smart Virtual Assistants & Chatbots
-- Enhances chatbots with image/audio recognition, making interactions more dynamic.
-- **Example:** A virtual assistant that can “see” and “hear” the user, responding accordingly.
+### 6. Smart Tourism
+- Tourists can upload an image in realtime and gain more insights and information related to the image. 
+- **Example:** If a tourist decides to visit Seattle, he/she can upload the image of the space needle and other related generic information of the space needle. 
 
 ## License
 This project is licensed under the [MIT License](../LICENSE).
