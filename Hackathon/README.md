@@ -7,7 +7,7 @@ The application utilizes BLIP for captioning, ViLT for Visual Question Answering
 
 ## Preview
 **SnapSense Live Preview**
-![SnapSense in Action](assets/snapsense_demo.gif)
+![SnapSense in Action](examples/SnapSense.gif)
 
 ## Contributors
 - **Dhanashri Deshpande** - https://www.linkedin.com/in/ddhanashri/
