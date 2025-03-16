@@ -1,21 +1,24 @@
+#bluetooth_server.py
+bluetooth_server
 import asyncio
 from bleak import BleakScanner, BleakClient
 import os
 from image_captioning import generate_caption_with_blip
 from vqa_handler import VQAHandler
 from accessibility_handler import AccessibilityHandler
-from gtts import gTTS
-
+import edge_tts  # Changed from gtts to edge_tts
+ 
 class BluetoothServer:
     def __init__(self):
         self.vqa_handler = VQAHandler()
         self.accessibility_handler = AccessibilityHandler()
         self.received_data = bytearray()
+        self.voice = "en-US-JennyNeural"  # Default voice
         
         # Create directories if they don't exist
         os.makedirs("received_images", exist_ok=True)
         os.makedirs("audio_output", exist_ok=True)
-
+ 
     async def start_server(self):
         print("Starting Bluetooth server...")
         print("Waiting for mobile device connection...")
@@ -31,7 +34,7 @@ class BluetoothServer:
             except Exception as e:
                 print(f"Error: {e}")
                 await asyncio.sleep(5)
-
+ 
     async def connect_to_device(self, device):
         print(f"Connecting to {device.name}...")
         client = BleakClient(device.address)
@@ -54,7 +57,7 @@ class BluetoothServer:
             print(f"Connection error: {e}")
         finally:
             await client.disconnect()
-
+ 
     async def handle_image_data(self, sender, data):
         try:
             # Accumulate received data
@@ -73,17 +76,18 @@ class BluetoothServer:
                 results = await self.process_image(image_path)
                 
                 # Generate audio response
-                audio_path = self.text_to_speech(results['description'])
+                audio_path = await self.text_to_speech(results['description'])
                 
-                # Send audio back
-                with open(audio_path, "rb") as f:
-                    audio_data = f.read()
-                    await sender.write_gatt_char(
-                        "audio_characteristic_uuid",  # Replace with your characteristic UUID
-                        audio_data
-                    )
-                
-                print("Processed and sent response!")
+                if audio_path:
+                    # Send audio back
+                    with open(audio_path, "rb") as f:
+                        audio_data = f.read()
+                        await sender.write_gatt_char(
+                            "audio_characteristic_uuid",  # Replace with your characteristic UUID
+                            audio_data
+                        )
+                    
+                    print("Processed and sent response!")
                 
                 # Clear received data for next image
                 self.received_data = bytearray()
@@ -91,7 +95,7 @@ class BluetoothServer:
         except Exception as e:
             print(f"Error processing data: {e}")
             self.received_data = bytearray()
-
+ 
     async def process_image(self, image_path):
         """Process the received image using your existing models"""
         try:
@@ -129,21 +133,27 @@ class BluetoothServer:
         except Exception as e:
             print(f"Error processing image: {e}")
             return None
-
-    def text_to_speech(self, text):
-        """Convert description to speech"""
+ 
+    async def text_to_speech(self, text):
+        """Convert description to speech using Edge TTS"""
         try:
             audio_path = "audio_output/response.mp3"
-            tts = gTTS(text=text, lang='en')
-            tts.save(audio_path)
+            communicate = edge_tts.Communicate(text, self.voice)
+            await communicate.save(audio_path)
             return audio_path
         except Exception as e:
             print(f"Error generating speech: {e}")
             return None
-
+ 
+    def change_voice(self, voice_name):
+        """Change TTS voice"""
+        self.voice = voice_name
+        print(f"Changed voice to: {voice_name}")
+ 
 async def main():
     server = BluetoothServer()
     await server.start_server()
-
+ 
 if __name__ == "__main__":
-    asyncio.run(main()) 
+    asyncio.run(main())
+ 
