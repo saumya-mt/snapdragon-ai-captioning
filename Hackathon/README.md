@@ -1,4 +1,5 @@
 # SnapSense: Accessible AI-Powered Image Analysis
+## Team : AI Wizards
 
 ## Description
 SnapSense is an AI-driven accessibility tool that provides detailed image analysis, caption generation, and voice-based interactions. It utilizes state-of-the-art models for image captioning, vision-language question answering (VQA), and accessibility-focused scene understanding. The system also integrates Bluetooth-based image transfer for seamless mobile-device interaction.
