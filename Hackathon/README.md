@@ -5,6 +5,8 @@ SnapSense is an AI-driven accessibility tool that provides detailed image analys
 
 The application utilizes BLIP for captioning, ViLT for Visual Question Answering (VQA), and OpenCV for image processing, reducing latency, dependency on the cloud, and privacy concerns. The models are optimized for deployment on Snapdragon devices, ensuring efficient performance. The user-friendly interface is built using Chainlit to showcase SnapSense's capabilities.
 
+## Preview
+**SnapSense Live Preview**
 ![SnapSense in Action](assets/snapsense_demo.gif)
 
 ## Contributors
@@ -22,19 +24,19 @@ The application utilizes BLIP for captioning, ViLT for Visual Question Answering
 - **Bluetooth Image Transfer**: Enables image sharing from mobile devices.
 - **Automated Processing Pipeline**: Handles image preprocessing, model inference, and response generation.
 
-## Preview
-**SnapSense Live Preview**
-
 ## Installation
 
 ### Clone the Repository
 Clone the project repository to your local machine:
+```
 git clone https://github.com/your-repo/snapdragon-ai-captioning.git
 cd snapdragon-ai-captioning
-
+```
 ### Create and activate virtual environment
+```
 python -m venv venv
 source venv/bin/activate
+```
 
 ### Prerequisites
 cd Hackathon
