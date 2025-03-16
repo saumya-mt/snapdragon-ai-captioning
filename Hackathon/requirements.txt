@@ -2,7 +2,7 @@ chainlit
 pillow
 transformers
 torch
-gtts
+edge-tts
 numpy
 bleak
 kivy
