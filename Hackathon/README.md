@@ -7,17 +7,6 @@ The application utilizes BLIP for captioning, ViLT for Visual Question Answering
 
 ![SnapSense in Action](assets/snapsense_demo.gif)
 
-# Developers:
-- **Saumya Mishra  https://www.linkedin.com/in/saumya-mishra-a85430156/
-
-- **Dhanashree Deshpande 
-
-- **Alka Tripathi  
-
-- **Poorva Barve 
-
-- **Ronald Rommel Myloth  
-
 ## Features
 - **Real-Time Image Captioning**: Generates captions using a pre-trained BLIP model.
 - **Vision-Language Question Answering (VQA)**: Answers specific questions about an image.
