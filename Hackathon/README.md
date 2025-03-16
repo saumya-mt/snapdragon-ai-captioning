@@ -1,6 +1,6 @@
 # SnapSense: Accessible AI-Powered Image Analysis
 
-## Overview
+## Description
 SnapSense is an AI-driven accessibility tool that provides detailed image analysis, caption generation, and voice-based interactions. It utilizes state-of-the-art models for image captioning, vision-language question answering (VQA), and accessibility-focused scene understanding. The system also integrates Bluetooth-based image transfer for seamless mobile-device interaction.
 
 The application utilizes BLIP for captioning, ViLT for Visual Question Answering (VQA), and OpenCV for image processing, reducing latency, dependency on the cloud, and privacy concerns. The models are optimized for deployment on Snapdragon devices, ensuring efficient performance. The user-friendly interface is built using Chainlit to showcase SnapSense's capabilities.
@@ -24,7 +24,7 @@ The application utilizes BLIP for captioning, ViLT for Visual Question Answering
 - **Bluetooth Image Transfer**: Enables image sharing from mobile devices.
 - **Automated Processing Pipeline**: Handles image preprocessing, model inference, and response generation.
 
-## Installation
+## Installation and Set up Instructions
 
 ### Clone the Repository
 Clone the project repository to your local machine:
