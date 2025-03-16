@@ -7,6 +7,13 @@ The application utilizes BLIP for captioning, ViLT for Visual Question Answering
 
 ![SnapSense in Action](assets/snapsense_demo.gif)
 
+## Contributors
+- **Dhanashri Deshpande** - https://www.linkedin.com/in/ddhanashri/
+- **Saumya Mishra** - https://www.linkedin.com/in/saumya-mishra-a85430156/
+- **Poorva Barve** - https://www.linkedin.com/in/poorvabarve/
+- **Alka Tripathi** - https://www.linkedin.com/in/alka-t/
+- **Ronald Rommel Myloth** - https://www.linkedin.com/in/ronald-rommel/
+  
 ## Features
 - **Real-Time Image Captioning**: Generates captions using a pre-trained BLIP model.
 - **Vision-Language Question Answering (VQA)**: Answers specific questions about an image.
@@ -111,14 +118,6 @@ The `examples/` folder includes sample input and output files to demonstrate Sna
 ### 7. Smart Virtual Assistants & Chatbots
 - Enhances chatbots with image/audio recognition, making interactions more dynamic.
 - **Example:** A virtual assistant that can “see” and “hear” the user, responding accordingly.
-
-## Contributors
-- **Dhanashri Deshpande** - https://www.linkedin.com/in/ddhanashri/
-- **Saumya Mishra** - https://www.linkedin.com/in/saumya-mishra-a85430156/
-- **Poorva Barve** - https://www.linkedin.com/in/poorvabarve/
-- **Alka Tripathi** - https://www.linkedin.com/in/alka-t/
-- **Ronald Rommel Myloth** - https://www.linkedin.com/in/ronald-rommel/
-- **[Contributor Name](https://github.com/username)**
 
 ## License
 This project is licensed under the [MIT License](../LICENSE).
