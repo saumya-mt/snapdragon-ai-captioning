@@ -15,8 +15,8 @@ import edge_tts  # Using Edge TTS
 vqa_handler = VQAHandler()
 model_handler = OptimizedModelHandler()
 accessibility_handler = AccessibilityHandler()
-processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
-model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
+processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base", local_files_only=True) # can remove local_files_only if we want to connect to internet
+model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base", local_files_only=True)
 
 async def generate_audio(text, lang='en'):
     """Generate audio from text using Edge TTS"""
