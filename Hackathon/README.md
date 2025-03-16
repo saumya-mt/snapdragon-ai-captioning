@@ -48,7 +48,7 @@ Ensure you have the following dependencies installed:
 - Transformers (Hugging Face)
 - OpenCV
 - ONNX Runtime
-- Edge TTS - 6.1 and above
+- Edge-tts - 6.1 and above
 - Chainlit
 - Bluetooth Libraries (Bleak, PyBluez)
 - You can install this altogether using  ```pip install -r requirements.txt```
