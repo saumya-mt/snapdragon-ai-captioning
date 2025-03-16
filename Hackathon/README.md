@@ -93,8 +93,9 @@ After running this command, it will route us to this url http://localhost:8001/.
 
 The `examples/` folder includes sample input and output files to demonstrate SnapSense's capabilities:
 - `example_image.jpg` – A sample image for caption generation.
-- `example_caption.txt` – Shows how the original image is transformed into a caption and text description.
-- `example_vqa.txt` – Demonstrates VQA responses to common image-related queries.
+- `example_caption.jpg` – Shows how the original image is transformed into a caption and text description.
+- `example_vqa.jpg` – Demonstrates VQA responses to common image-related queries.
+- `example_bluetooth.jpg` - Shows console output of image being received via bluetooth and audio file being generated.
 
 
 ## Cloud vs. Local Execution
