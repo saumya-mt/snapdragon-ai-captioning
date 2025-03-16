@@ -10,13 +10,13 @@ The application utilizes BLIP for captioning, ViLT for Visual Question Answering
 # Developers:
 - **Saumya Mishra  https://www.linkedin.com/in/saumya-mishra-a85430156/
 
-- **Dhanashree Deshpande https://www.linkedin.com/in/ddhanashri/
+- **Dhanashree Deshpande 
 
-- **Alka Tripathi  https://www.linkedin.com/in/alka-t/
+- **Alka Tripathi  
 
-- **Poorva Barve https://www.linkedin.com/in/poorvabarve/
+- **Poorva Barve 
 
-- **Ronald Rommel Myloth  https://www.linkedin.com/in/ronald-rommel/
+- **Ronald Rommel Myloth  
 
 ## Features
 - **Real-Time Image Captioning**: Generates captions using a pre-trained BLIP model.
@@ -124,11 +124,11 @@ The `examples/` folder includes sample input and output files to demonstrate Sna
 - **Example:** A virtual assistant that can “see” and “hear” the user, responding accordingly.
 
 ## Contributors
-- **Dhanashri Deshpande** - MS in Computer Science
-- **Saumya Mishra** - MS in Computer Science
-- **Poorva Barve** - MS in Computer Science (Align)
-- **Alka Tripathi** - MS in Computer Science
-- **Ronald Rommel Myloth** - MS in Computer Science
+- **Dhanashri Deshpande** - https://www.linkedin.com/in/ddhanashri/
+- **Saumya Mishra** - https://www.linkedin.com/in/saumya-mishra-a85430156/
+- **Poorva Barve** - https://www.linkedin.com/in/poorvabarve/
+- **Alka Tripathi** - https://www.linkedin.com/in/alka-t/
+- **Ronald Rommel Myloth** - https://www.linkedin.com/in/ronald-rommel/
 - **[Contributor Name](https://github.com/username)**
 
 ## License
