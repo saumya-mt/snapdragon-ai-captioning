@@ -1,4 +1,6 @@
 chainlit
+onnx
+onnxruntime 
 pillow
 transformers
 torch
