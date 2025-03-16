@@ -9,7 +9,7 @@ from accessibility_handler import AccessibilityHandler
 import asyncio
 import torch
 from transformers import BlipProcessor, BlipForConditionalGeneration
-from gtts import gTTS
+import edge_tts  # Using Edge TTS
 
 # Initialize Handlers & Models
 vqa_handler = VQAHandler()
@@ -18,12 +18,17 @@ accessibility_handler = AccessibilityHandler()
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
 
-def generate_audio(text, lang='en'):
-    """Generate audio from text using gTTS"""
-    tts = gTTS(text=text, lang=lang)
-    with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as fp:
-        tts.save(fp.name)
-        return fp.name
+async def generate_audio(text, lang='en'):
+    """Generate audio from text using Edge TTS"""
+    try:
+        voice = "en-US-JennyNeural"  # Default voice
+        communicate = edge_tts.Communicate(text, voice)
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as fp:
+            await communicate.save(fp.name)
+            return fp.name
+    except Exception as e:
+        print(f"⚠️ Error generating audio: {str(e)}")
+        return None
 
 @cl.on_chat_start
 async def start():
@@ -74,7 +79,7 @@ async def main(message: cl.Message):
                 caption, (scene_type, scene_confidence), vqa_results
             )
 
-            audio_path = accessibility_handler.text_to_speech(detailed_description)
+            audio_path = await generate_audio(detailed_description)
 
             await cl.Message(
                 content=f"**📝 Image Analysis:**\n{detailed_description}",
@@ -101,7 +106,7 @@ async def main(message: cl.Message):
             result = model_handler.answer_question(current_image_path, message.content)
             response = f"**Q:** {message.content}\n**A:** {result['answer']}"
 
-            audio_path = accessibility_handler.text_to_speech(
+            audio_path = await generate_audio(
                 f"You asked: {message.content}. The answer is: {result['answer']}"
             )
 
@@ -132,10 +137,15 @@ async def on_action(action):
     try:
         result = vqa_handler.get_answer(current_image_path, question)
 
+        audio_path = await generate_audio(
+            f"Question: {question}. Answer: {result['main_answer']}"
+        )
+
         await cl.Message(
             content=f"**Q:** {question}\n**A:** {result['main_answer']} (Confidence: {result['confidence']})",
             elements=[
-                cl.Image(name="reference_image", display="inline", path=current_image_path)
+                cl.Image(name="reference_image", display="inline", path=current_image_path),
+                cl.Audio(name="answer_audio", path=audio_path)
             ]
         ).send()
         
@@ -143,4 +153,5 @@ async def on_action(action):
         await cl.Message(content=f"⚠️ Error processing question: {str(e)}").send()
 
 if __name__ == "__main__":
-    cl.run()
+    import asyncio
+    asyncio.run(cl.run())  # Ensure async execution
