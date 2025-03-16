@@ -1,10 +1,13 @@
+#bluetooth_receiver.py
+ 
 import os
 from image_captioning import generate_caption_with_blip
 from vqa_handler import VQAHandler
 from accessibility_handler import AccessibilityHandler
-from gtts import gTTS
+import edge_tts
 import time
-
+import asyncio
+ 
 class ImageProcessor:
     def __init__(self):
         print("Initializing models...")
@@ -17,8 +20,20 @@ class ImageProcessor:
         
         # Directory to watch for new images
         self.watch_dir = "received_images"
+        # Default voice for Edge TTS
+        self.voice = "en-US-JennyNeural"
         
-    def process_image(self, image_path):
+    async def generate_audio(self, text, audio_path):
+        """Generate audio using Edge TTS"""
+        try:
+            communicate = edge_tts.Communicate(text, self.voice)
+            await communicate.save(audio_path)
+            return True
+        except Exception as e:
+            print(f"Error generating audio: {e}")
+            return False
+ 
+    async def process_image(self, image_path):
         """Process received image and generate description"""
         try:
             print(f"\nProcessing image: {image_path}")
@@ -69,23 +84,28 @@ class ImageProcessor:
             # Generate audio
             audio_path = os.path.join("audio_output", f"description_{int(time.time())}.mp3")
             print(f"\nGenerating audio description: {audio_path}")
-            tts = gTTS(text=description, lang='en')
-            tts.save(audio_path)
             
-            print("\nProcessing complete!")
-            print(f"Audio file saved to: {audio_path}")
+            # Generate audio using Edge TTS
+            success = await self.generate_audio(description, audio_path)
             
-            return {
-                'caption': caption,
-                'description': description,
-                'audio_path': audio_path
-            }
+            if success:
+                print("\nProcessing complete!")
+                print(f"Audio file saved to: {audio_path}")
+                
+                return {
+                    'caption': caption,
+                    'description': description,
+                    'audio_path': audio_path
+                }
+            else:
+                print("Failed to generate audio")
+                return None
             
         except Exception as e:
             print(f"Error processing image: {e}")
             return None
-
-    def watch_for_images(self):
+ 
+    async def watch_for_images(self):
         """Watch for new images in the received_images directory"""
         print(f"\nWatching for images in: {self.watch_dir}")
         print("Transfer an image from your phone to this directory...")
@@ -105,7 +125,7 @@ class ImageProcessor:
                         print(f"\nNew image detected: {filename}")
                         
                         # Process the image
-                        result = self.process_image(image_path)
+                        result = await self.process_image(image_path)
                         
                         if result:
                             print("\n=== Results ===")
@@ -116,15 +136,17 @@ class ImageProcessor:
                         # Add to processed files
                         processed_files.add(filename)
                 
-                time.sleep(1)  # Check every second
+                await asyncio.sleep(1)  # Check every second
                 
             except KeyboardInterrupt:
                 print("\nStopping image watch...")
                 break
             except Exception as e:
                 print(f"Error: {e}")
-                time.sleep(1)
-
+                await asyncio.sleep(1)
+ 
 if __name__ == "__main__":
     processor = ImageProcessor()
-    processor.watch_for_images() 
+    # Run the async function
+    asyncio.run(processor.watch_for_images())
+ 
