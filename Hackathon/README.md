@@ -38,6 +38,7 @@ source venv/bin/activate
 
 ### Prerequisites
 cd Hackathon
+
 Ensure you have the following dependencies installed:
 - Python 3.8+
 - PyTorch
@@ -49,23 +50,22 @@ Ensure you have the following dependencies installed:
 - Bluetooth Libraries (Bleak, PyBluez)
 - You can install this altogether using pip install -r requirements.txt
 
-### Install Required Packages
-```bash
-pip install torch torchvision transformers onnxruntime edge-tts gtts bleak pybluez chainlit opencv-python numpy
-```
-
 ## Run and Usage Instructions
 
 ### 1. Running the Bluetooth Server
-```bash
-cd Hackathon
+
+run the following command
+```
 python src/bluetooth_server.py
 ```
+Now we need to connect one phone with the laptop using bluetooth and upload an image. The image will be received on our machine. Now we need to put the image in received_images. Now the model will automatically detect the img file(.jpeg) and generate the caption and audio output. This caption is shown on terminal and audio is stored in audio_output. In future we are planning to integrate it as a hand held mobile app.
+
 
 ### 2. Running the Chat-based Interface (SnapSense UI)
 ```bash
 chainlit run src/app.py --port 8001
 ```
+After running this command, it will route us to this url http://localhost:8001/. Now we need to upload an image on the chat window and add text in the chat window to generate required caption. Now it will generate audio and captions. You can also ask related question on the image.
 
 ## Architecture
 1. **Image Input**: The user uploads an image via Bluetooth or the UI.
@@ -122,10 +122,6 @@ The `examples/` folder includes sample input and output files to demonstrate Sna
 ### 5. Education & E-Learning
 - Converts visual content and spoken lectures into text captions, making learning materials more accessible.
 - **Example:** AI-driven lecture transcription with slide-based captioning.
-
-### 6. Healthcare & Assistive Tech
-- Helps doctors analyze medical images (X-rays, MRIs) and generate automated reports.
-- **Example:** AI-powered captioning for telemedicine and patient monitoring.
 
 ### 7. Smart Virtual Assistants & Chatbots
 - Enhances chatbots with image/audio recognition, making interactions more dynamic.
