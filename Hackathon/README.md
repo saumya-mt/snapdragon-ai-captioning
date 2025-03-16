@@ -111,28 +111,22 @@ The `examples/` folder includes sample input and output files to demonstrate Sna
 
 ## Use Cases
 ### 1. Accessibility for Visually Impaired Users
-- Converts images into descriptive text and audio to help visually impaired individuals understand their surroundings.
 - **Example:** Real-time AI-powered screen readers that describe objects, people, or scenes.
 
 ### 2. Enhanced Social Media & Content Creation
-- Generates context-aware captions by analyzing both images and audio.
 - **Example:** Auto-captioning for Instagram, TikTok, and YouTube, making content more engaging and accessible.
 
 ### 3. Surveillance & Security
-- Uses AI-powered captioning to analyze CCTV footage, describe incidents, and provide real-time alerts.
-- **Example:** Smart security systems that detect and narrate suspicious activities.
+- **Example:** Smart security systems that detect and narrate suspicious activities from images.
 
 ### 4. E-Commerce & Retail
-- Provides automated product descriptions by analyzing images and spoken reviews.
 - **Example:** AI-driven product tagging on Amazon or fashion websites.
 
 ### 5. Education & E-Learning
-- Converts visual content and spoken lectures into text captions, making learning materials more accessible.
 - **Example:** AI-driven lecture transcription with slide-based captioning.
 
 ### 6. Smart Tourism
-- Tourists can upload an image in realtime and gain more insights and information related to the image. 
-- **Example:** If a tourist decides to visit Seattle, he/she can upload the image of the space needle and other related generic information of the space needle. 
+- **Example:** Tourists can upload an image in realtime and gain more insights and information related to the image. 
 
 ## License
 This project is licensed under the [MIT License](../LICENSE).
